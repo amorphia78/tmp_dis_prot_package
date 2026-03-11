@@ -8,10 +8,9 @@ Note that as well as the three word counts described in those materials (words o
 
 ## Shared code
 
-The process is fully documented by means of provision of the Python code which generated the counts. Below we also include a natural language summary of this process. Running the script [/src/word_count/code_and_count_article_words.py](/src/word_count/code_and_count_article_words.py) processes the [specific articles](/articles/specific) and recreate the word count output files in [/word_count/](/word_count/). The script two additional Python source files: LLM API interface functions are in [/src/word_count/llmproc_core.py](/src/word_count/llmproc_core.py) and prompts are in [/src/word_count/prompts_for_code_and_count_article_words.py](/src/word_count/prompts_for_code_and_count_article_words.py). The script can be run without an Anthropic API key because prompt responses are [cached](/llm_caches/). 
+The process is fully documented by means of provision of the Python code which generated the counts. Below we also include a natural language summary of this process. Running the script [/src/word_count/code_and_count_article_words.py](/src/word_count/code_and_count_article_words.py) processes the [specific articles](/articles/specific) and recreates the word count output files in [/word_count/](/word_count/). The script uses two additional Python source files: LLM API interface functions are in [/src/word_count/llmproc_core.py](/src/word_count/llmproc_core.py) and prompts are in [/src/word_count/prompts_for_code_and_count_article_words.py](/src/word_count/prompts_for_code_and_count_article_words.py). The script can be run without an Anthropic API key because prompt responses are [cached](/llm_caches/). 
 
 ## Process summary
-
 
 Each article is processed in turn through a sequence of LLM prompts. Articles are tagged for starts and ends of content blocks, allowing subsequent deterministic non-LLM code to use the tags to count words in blocks.
 
@@ -23,7 +22,7 @@ In an initial very long prompt, the LLM is given:
 1. Four example articles which have been tagged in this manner, including comments justifying tag positions with reference to the definitions.
 1. The article to tag, and an instruction to return the article exactly as provided but with tags inserted.
 
-Pictures are not present in the article in the prompt, but both the figure captions and the alt text is present, with pre-inserted tags identifying this text for what it is, and the prompt includes instructions for including the picture material in text blocks as appropriate. For example, a picture might be included in a protester messaging block if it contains a banner with legible text.
+Pictures are not present in the article in the prompt, but both the figure captions and the alt text is present, with pre-inserted tags identifying this text as what it is, and the prompt contains instructions for including the picture material in content blocks as appropriate. For example, a picture might be included in a protester messaging block if it contains a banner with legible text.
 
 The returned tagged article is checked for compliance with the required tagging syntax. Whether this check passes or fails, a second prompt is issued, asking the LLM to check its own work and see if it can be improved. If a tagging syntax error occurred, this error is pointed out.
 
