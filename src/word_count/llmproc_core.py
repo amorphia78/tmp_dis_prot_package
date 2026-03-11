@@ -58,7 +58,7 @@ def send_prompt(prompt, prefill="", prior_prompt="", prior_llm ="" ):
     return response
 
 def process_with_cache(process_func, article, additional_arg=None):
-    cache_dir = f"../llm_caches/{process_func.__name__}"
+    cache_dir = f"../../llm_caches/{process_func.__name__}"
     os.makedirs(cache_dir, exist_ok=True)
     if additional_arg is not None:
         safe_arg = str(additional_arg).replace('/', '_').replace('\\', '_')
