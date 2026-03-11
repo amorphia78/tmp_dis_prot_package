@@ -12,19 +12,19 @@ The plan is to assemble everything here, then we make a new repo (probably calle
 
 ## Contents
 
-### /articles/
+### [/articles/](/articles/)
 
 Contains all 110 articles, in [specific](/articles/specific) (100) and [general](/articles/general) (10) subdirectories, in HTML format, produced as described in [full_article_sampling_and_production_details](/doc/full_article_sampling_and_production_details.md).
 
-### /src/word_count/ and /word_count/
+### [/src/word_count/](/src/word_count/) and [/word_count/](/word_count/)
 
 Running [/src/word_count/code_and_count_article_words.py](/src/word_count/code_and_count_article_words.py) will process the specific articles recreate the word count output files in [/word_count/](/word_count/), also using additional files, as documented in [article_word_count_details](/doc/article_word_count_details.md).
 
-### /llm_caches/
+### [/llm_caches/](/llm_caches/)
 
-Contains caches LLM prompt responses so that [code_and_count_article_words.py](/src/word_count/code_and_count_article_words.py) can be run by those without an Anthropic API key.
+Contains caches LLM prompt responses so that [code_and_count_article_words.py](/src/word_count/code_and_count_article_words.py) can be run by those without an Anthropic API key, using the [process_with_cache()](/src/word_count/llmproc_core.py#L60) function.
 
-### /doc/
+### [/doc/](/doc/)
 
 Contains documentation files linked to above.
 
