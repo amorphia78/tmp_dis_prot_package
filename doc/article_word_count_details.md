@@ -8,7 +8,7 @@ Note that as well as the three word counts described in those materials (words o
 
 ## Shared code
 
-The process is fully documented by means of provision of the Python code which generated the counts. Below we also include a natural language summary of this process. Running the script [/src/word_count/code_and_count_article_words.py](/src/word_count/code_and_count_article_words.py) will process the [specific articles](/articles/specific) and recreate the word count output files in [/word_count/](/word_count/). The script two additional Python source files: LLM API interface functions are in [/src/word_count/llmproc_core.py](/src/word_count/llmproc_core.py) and prompts are in [/src/word_count/prompts_for_code_and_count_article_words.py](/src/word_count/prompts_for_code_and_count_article_words.py).
+The process is fully documented by means of provision of the Python code which generated the counts. Below we also include a natural language summary of this process. Running the script [/src/word_count/code_and_count_article_words.py](/src/word_count/code_and_count_article_words.py) processes the [specific articles](/articles/specific) and recreate the word count output files in [/word_count/](/word_count/). The script two additional Python source files: LLM API interface functions are in [/src/word_count/llmproc_core.py](/src/word_count/llmproc_core.py) and prompts are in [/src/word_count/prompts_for_code_and_count_article_words.py](/src/word_count/prompts_for_code_and_count_article_words.py). The script can be run without an Anthropic API key because prompt responses are [cached](/llm_caches/). 
 
 ## Process summary
 
