@@ -1,30 +1,25 @@
 import anthropic
 import os
 import json
-import requests
 
 client = None
 no_cache = False
 
 def load_client(api_key: str | None = None) -> anthropic.Anthropic:
     global client
-    # If an API key string is provided directly, use it to create the client
     if api_key is not None:
         client = anthropic.Anthropic(api_key=api_key)
-    # Otherwise, attempt to load the key from the file
     else:
         try:
             with open('key.txt', 'r') as file:
                 file_api_key = file.read().strip()
             client = anthropic.Anthropic(api_key=file_api_key)
         except FileNotFoundError:
-            print("key.txt file not found")
-            raise
+            print("key.txt file not found - key couldn't be loaded, remainder of code requires a full set of cached LLM responses")
         except Exception as e:
-            print(f"Error loading API key: {str(e)}")
-            raise
-
-def send_prompt(prompt, llm_task_type="summariser", prefill="", prior_prompt="", prior_llm ="" ):
+            print(f"Error loading API key: {str(e)} - key couldn't be loaded, remainder of code requires a full set of cached LLM responses")
+            
+def send_prompt(prompt, prefill="", prior_prompt="", prior_llm ="" ):
     global client
     if prior_prompt != "":
         messages = [
@@ -52,21 +47,10 @@ def send_prompt(prompt, llm_task_type="summariser", prefill="", prior_prompt="",
                 'role': "assistant",
                 'content': [ {'type': "text", 'text': prefill} ]
             } )
-    system = ""
-    if llm_task_type == "summariser":
-        system = ""
-    elif llm_task_type == "processor":
-        system = ""
-    else:
-        system = llm_task_type
-    #print(f"Messages: {messages}")
-    #for i, msg in enumerate(messages):
-    #    print(f"Message {i}: role='{msg.get('role')}', content='{msg.get('content')}'")
     response = client.messages.create(
         model="claude-sonnet-4-20250514",
         max_tokens=2000,
         temperature=0,
-#        system=system,
         messages=messages,
     ).content[0].text
     if prefill:
@@ -74,7 +58,7 @@ def send_prompt(prompt, llm_task_type="summariser", prefill="", prior_prompt="",
     return response
 
 def process_with_cache(process_func, article, additional_arg=None):
-    cache_dir = f"llm_caches/{process_func.__name__}"
+    cache_dir = f"../llm_caches/{process_func.__name__}"
     os.makedirs(cache_dir, exist_ok=True)
     if additional_arg is not None:
         safe_arg = str(additional_arg).replace('/', '_').replace('\\', '_')
