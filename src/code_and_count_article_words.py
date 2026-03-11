@@ -1,3 +1,5 @@
+# Note to self from author: originally called processCodedTextBlocks.py
+
 import prompts_for_code_and_count_article_words as pr
 import json
 import llmproc_core as llm
@@ -209,7 +211,6 @@ class InvalidTagNestingError(Exception):
         end = min(len(self.word_list), self.error_position + 11)
         return self.word_list[start:end]
 
-
 def analyze_content(content):
     """Analyze content with multiple block types."""
     # Define block types and their tags
@@ -320,8 +321,6 @@ def analyze_content(content):
 
     return stats
 
-
-
 def count_words_in_tagged_blocks(article):
     for field in ['title', 'subtitle', 'main_content']:
         if field in article and article[field]:
@@ -412,7 +411,6 @@ def attach_tagging_error_to_original_article(article,tagged_article):
             if isinstance(value, str) and "Error" in value
         )
 
-
 def apply_manual_corrections(articles_with_second_tagging, corrections_file_path, output_folder):
     articles_with_second_tagging_plus_corrections = articles_with_second_tagging.copy()
     manually_corrected_articles = parse_articles_file(corrections_file_path)
@@ -436,7 +434,7 @@ def apply_manual_corrections(articles_with_second_tagging, corrections_file_path
             else:
                 print(f"PROBLEM: No manual correction found for article with tagging error: {article_id}")
 
-    write_word_counts_file(articles_with_second_tagging_plus_corrections, "corrected", output_folder )
+    write_word_counts_file(articles_with_second_tagging_plus_corrections, "final", output_folder )
 
 def llm_code_and_count(
         directory_to_process = "../coding_batches/batch6/individual_articles/specific_and_edited",
@@ -488,20 +486,19 @@ def llm_code_and_count(
 
             articles_with_second_tagging[article_with_second_tagging["id"]] = article_with_second_tagging
 
-        with open('llm_coded_content_blocks.json', 'w') as f:
+        with open(f'{output_folder}/llm_coded_content_blocks.json', 'w') as f:
             json.dump(articles_with_second_tagging, f, indent=4)
         write_word_counts_file(articles_with_first_tagging, "first", output_folder )
         write_word_counts_file(articles_with_second_tagging, "second", output_folder )
         if do_manual_corrections:
             apply_manual_corrections(articles_with_second_tagging, corrections_file, output_folder )
 
-
 def main():
     llm_code_and_count(
         "../articles/specific/",
         True,
-        "../articles/specific/word_count_output/",
-        "../articles/specific/word_count_output/corrections.txt"
+        "../word_count_output/",
+        "../word_count_output/corrections.txt"
     )
 
 if __name__ == "__main__":
