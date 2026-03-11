@@ -1,18 +1,4 @@
-tag_instructions_prompt_intro = """
-"""
-
-test_article = """
-"""
-
-tag_instructions_prompt_end = """
-"""
-
-have_another_go_no_error_prompt = """
-"""
-
-have_another_go_after_error_prompt = """
-"""
-
+import prompts_for_code_and_count_article_words as pr
 import json
 import llmproc_core as llm
 import datetime
@@ -37,18 +23,18 @@ warnings.formatwarning = custom_formatwarning
 
 def llm_tag_first_go(article):
     article_string = reconstitute_article_string(article)
-    prompt = tag_instructions_prompt_intro + article_string + tag_instructions_prompt_end
+    prompt = pr.tag_instructions_prompt_intro + article_string + pr.tag_instructions_prompt_end
     return llm.send_prompt(prompt)
 
 def llm_tag_second_go_after_error(article):
-    return llm_tag_second_go( article, have_another_go_after_error_prompt + article["tag_error_message"] )
+    return llm_tag_second_go( article, pr.have_another_go_after_error_prompt + article["tag_error_message"] )
 
 def llm_tag_second_go_no_error(article):
-    return llm_tag_second_go( article, have_another_go_no_error_prompt )
+    return llm_tag_second_go( article, pr.have_another_go_no_error_prompt )
 
 def llm_tag_second_go(article, have_another_go_prompt):
     article_string = reconstitute_article_string(article)
-    original_prompt = tag_instructions_prompt_intro + article_string + tag_instructions_prompt_end
+    original_prompt = pr.tag_instructions_prompt_intro + article_string + pr.tag_instructions_prompt_end
     return llm.send_prompt(have_another_go_prompt, prior_prompt = original_prompt, prior_llm = article["tag_first_go"])
 
 def reconstitute_article_string(article):
@@ -650,10 +636,10 @@ def llm_code_and_count(
 
 def main():
     llm_code_and_count(
-        "../coding_batches/batch7/batch7_individual_articles/owe_specific/production/",
+        "../articles/specific/",
         True,
-        "../coding_batches/batch7/batch7_individual_articles/owe_specific/word_count_output/",
-        "../coding_batches/batch7/batch7_individual_articles/owe_specific/word_count_output/corrections.txt"
+        "../articles/specific/word_count_output/",
+        "../articles/specific/word_count_output/corrections.txt"
     )
 
 if __name__ == "__main__":
