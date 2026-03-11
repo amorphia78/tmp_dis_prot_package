@@ -2,7 +2,7 @@
 
 import prompts_for_code_and_count_article_words as pr
 import json
-from src.word_count import llmproc_core as llm
+import llmproc_core as llm
 import datetime
 import os
 from bs4 import BeautifulSoup, Comment
@@ -495,10 +495,10 @@ def llm_code_and_count(
 
 def main():
     llm_code_and_count(
-        "../articles/specific/",
+        "../../articles/specific/",
         True,
-        "../word_count_output/",
-        "../../word_count_output/corrections.txt"
+        "../../word_count/",
+        "../../word_count/corrections.txt"
     )
 
 if __name__ == "__main__":
