@@ -188,79 +188,11 @@ def parse_articles_from_html_directory(directory_path):
 
     return coded_articles
 
-class InvalidTagNestingErrorBatch3Style(Exception):
-    """Custom exception for invalid tag nesting"""
-    pass
-
 def ensure_tags_have_spaces(content):
     """Ensure all tags are properly separated by spaces."""
     for tag in ['#DS', '#DE', '#PS', '#PE', '#MS', '#ME', '#AS', '#AE', '#NS', '#NE', '#PH', '#CS', '#CE']:
         content = content.replace(tag, f' {tag} ')
     return content
-
-def analyze_content_for_batch_3_style(content):
-    stats = {
-        'total_words': 0,
-        'messaging_words': 0,
-        'disruption_words': 0,
-        'total_pictures': 0,
-        'messaging_pictures': 0,
-        'disruption_pictures': 0
-    }
-    content = ensure_tags_have_spaces(content)
-    messaging_depth = 0
-    disruption_depth = 0
-    words = []
-    current_word = ''
-    for char in content:
-        if char.isspace():
-            if current_word:
-                words.append(current_word)
-                current_word = ''
-        else:
-            current_word += char
-    if current_word:
-        words.append(current_word)
-    valid_tags = {'#MS', '#ME', '#DS', '#DE', '#PH', '#CS', '#CE'}
-    i = 0
-    while i < len(words):
-        word = words[i]
-        if word in valid_tags:
-            if word == '#MS':
-                if messaging_depth > 0:
-                    raise InvalidTagNestingErrorBatch3Style("Nested messaging blocks are not allowed")
-                messaging_depth += 1
-            elif word == '#ME':
-                if messaging_depth == 0:
-                    raise InvalidTagNestingErrorBatch3Style("Found #ME without matching #MS")
-                messaging_depth -= 1
-            elif word == '#DS':
-                if disruption_depth > 0:
-                    raise InvalidTagNestingErrorBatch3Style("Nested disruption blocks are not allowed")
-                disruption_depth += 1
-            elif word == '#DE':
-                if disruption_depth == 0:
-                    raise InvalidTagNestingErrorBatch3Style("Found #DE without matching #DS")
-                disruption_depth -= 1
-            elif word == '#PH':
-                stats['total_pictures'] += 1
-                if messaging_depth > 0:
-                    stats['messaging_pictures'] += 1
-                if disruption_depth > 0:
-                    stats['disruption_pictures'] += 1
-        else:
-            stats['total_words'] += 1
-            if messaging_depth > 0:
-                stats['messaging_words'] += 1
-            if disruption_depth > 0:
-                stats['disruption_words'] += 1
-        i += 1
-    if messaging_depth > 0:
-        raise InvalidTagNestingErrorBatch3Style("Unclosed messaging block at end of content")
-    if disruption_depth > 0:
-        raise InvalidTagNestingErrorBatch3Style("Unclosed disruption block at end of content")
-    return stats
-
 
 class InvalidTagNestingError(Exception):
     """Custom exception for invalid tag nesting"""
@@ -411,32 +343,6 @@ def move_tags_to_main_fields(articles, which_go):
             f.write(article.get(which_go, f"ERROR: tagging {which_go} not found")+"\n")
     return parse_articles_file(output_path)
 
-def write_word_counts_file_for_batch_3_style(articles, append_file=""):
-    output_path = f'output_folders/article_content_block_word_counts/block_word_counts_{timestamp}_{append_file}.tsv'
-    stat_fields = [
-        'total_words', 'messaging_words', 'disruption_words',
-        'total_pictures', 'messaging_pictures', 'disruption_pictures'
-    ]
-    content_types = ['title', 'subtitle', 'main_content']
-    header = ['id']
-    for content_type in content_types:
-        for stat in stat_fields:
-            header.append(f'{content_type}_{stat}')
-    with open(output_path, 'w', encoding='utf-8') as f:
-        f.write('\t'.join(header) + '\n')
-        for article_id, article in articles.items():
-            row = [article_id]
-            for content_type in content_types:
-                analysis_key = f'{content_type}_analysis'
-                analysis_dict = article.get(analysis_key, {})
-                if isinstance(analysis_dict, dict):
-                    for stat in stat_fields:
-                        row.append(str(analysis_dict.get(stat, 0)))
-                else:
-                    row.extend(['0'] * len(stat_fields))
-            f.write('\t'.join(row) + '\n')
-
-
 def write_word_counts_file(articles, append_file="", output_folder = "output_folders/article_content_block_word_counts/"):
     output_path = f'{output_folder}block_word_counts_{append_file}.tsv'
 
@@ -531,50 +437,6 @@ def apply_manual_corrections(articles_with_second_tagging, corrections_file_path
                 print(f"PROBLEM: No manual correction found for article with tagging error: {article_id}")
 
     write_word_counts_file(articles_with_second_tagging_plus_corrections, "corrected", output_folder )
-
-def count_vanessa_batch_3():
-    articles_for_counting = parse_articles_file('Formatted_Articles_20241118_195911 (Vanessa_Coding_50_corrected).txt')
-    #articles_for_counting = parse_articles_file('Formatted_Articles_20241118_195911 (Vanessa_Coding_30_corrected).txt')
-    for article in articles_for_counting.values():
-        count_words_in_tagged_blocks(article)
-    with open('human_coded_content_blocks.json', 'w') as f:
-        json.dump(articles_for_counting, f, indent=4)
-    write_word_counts_file(articles_for_counting, "assistant")
-
-def count_batch_5_example():
-    articles_for_counting = parse_articles_file('batch_5_example_for_testing_word_counts.txt')
-    print( "Hello" )
-    print(articles_for_counting)
-    for article in articles_for_counting.values():
-        count_words_in_tagged_blocks(article)
-    #with open('human_coded_content_blocks.json', 'w') as f:
-    #    json.dump(articles_for_counting, f, indent=4)
-    write_word_counts_file(articles_for_counting, "assistant")
-
-
-def llm_code_and_count_old():
-    articles_for_coding = parse_articles_file('formatted_articles_20241118_195911 (for coding).txt')
-    #articles_for_coding = dict(list(articles_for_coding.items())[7:9])
-    articles_with_first_tagging = {}
-    articles_with_second_tagging = {}
-    for article in articles_for_coding.values():
-        article["tag_first_go"] = llm.process_with_cache(llm_tag_first_go, article)
-        article_with_first_tagging = parse_article_from_tag_string(article["tag_first_go"])
-        count_words_in_tagged_blocks(article_with_first_tagging)
-        articles_with_first_tagging[article_with_first_tagging["id"]] = article_with_first_tagging
-        if article_with_first_tagging.get("tag_error","") == "present":
-            attach_tagging_error_to_original_article(article,article_with_first_tagging)
-            article["tag_second_go"] = llm.process_with_cache(llm_tag_second_go_after_error, article)
-        else:
-            article["tag_second_go"] = llm.process_with_cache(llm_tag_second_go_no_error, article)
-        article_with_second_tagging = parse_article_from_tag_string(article["tag_second_go"])
-        count_words_in_tagged_blocks(article_with_second_tagging)
-        articles_with_second_tagging[article_with_second_tagging["id"]] = article_with_second_tagging
-    with open('llm_coded_content_blocks.json', 'w') as f:
-        json.dump(articles_with_second_tagging, f, indent=4)
-    write_word_counts_file(articles_with_first_tagging, "first")
-    write_word_counts_file(articles_with_second_tagging, "second")
-
 
 def llm_code_and_count(
         directory_to_process = "../coding_batches/batch6/individual_articles/specific_and_edited",
