@@ -8,6 +8,7 @@ The plan is to assemble everything here, then we make a new repo (probably calle
 
 * BEN: Transfer the article production document from Google Doc into [full_article_sampling_and_production_details](/doc/full_article_sampling_and_production_details.md).
 * CLARA: Move data, analysis code, and analysis output, into appropriate places.
+* BEN: Think about how to include "the other (trivial) analysis code that does things like Fishers exact test for for article prep document" (as per other TODO).
 * BOTH: Think about what else needs to be here.
 
 ## Contents
