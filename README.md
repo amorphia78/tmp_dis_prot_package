@@ -7,7 +7,6 @@ The plan is to assemble everything here, then we make a new repo (probably calle
 ## TODO
 
 * BEN: Transfer the article production document from Google Doc into [full_article_sampling_and_production_details](/doc/full_article_sampling_and_production_details.md).
-* CLARA: Move data, analysis code, and analysis output, into appropriate places.
 * BEN: Think about how to include "the other (trivial) analysis code that does things like Fishers exact test for for article prep document" (as per other TODO).
 * BOTH: Think about what else needs to be here.
 
@@ -25,7 +24,10 @@ Running [/src/word_count/code_and_count_article_words.py](/src/word_count/code_a
 
 Contains caches LLM prompt responses so that [code_and_count_article_words.py](/src/word_count/code_and_count_article_words.py) can be run by those without an Anthropic API key, using the [process_with_cache()](/src/word_count/llmproc_core.py#L60) function.
 
+### [/experiment/](/experiment/)
+
+Contains .R files and data to produce the analyses in the main text (`experiment_analyses.R`) and the appendices (`appendix_analyses.R`), respectively.
+
 ### [/doc/](/doc/)
 
-Contains documentation files linked to above.
-
+Contains documentation files linked to above, including details on article sampling and production, results of two pilot tests for rating characteristics, and a priori power analyses.
