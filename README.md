@@ -26,7 +26,7 @@ Contains caches LLM prompt responses so that [code_and_count_article_words.py](/
 
 ### [/experiment/](/experiment/)
 
-Contains .R files and data to produce the analyses in the main text (`experiment_analyses.R`) and the appendices (`appendix_analyses.R`), respectively.
+Contains .R files and data to produce the analyses in the main text (`experiment_analyses.R`) and the appendices (`appendix_analyses.R`), respectively. Data from the experiment (all wave 1 respondents) are in the file `disruption_stimulus_data_clean.RData` (and also in `disruption_stimulus_data_clean.csv` for easier visual inspection/import into other statistical software. The Figures and Tables folders contain the graphs and LaTeX tables produced by the analysis script above. These are the figures and tables that appear in the main text and appendices of the paper.
 
 ### [/doc/](/doc/)
 
