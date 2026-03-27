@@ -30,4 +30,4 @@ The Figures and Tables folders contain the graphs and LaTeX tables produced by t
 
 ### [/doc/](/doc/)
 
-Contains documentation files linked to above, including details on article sampling and production, and additionally, results of two [pilot tests for rating](/doc/pilot_results.pdf) characteristics, and [a priori power analyses](/doc/power_analysis_results.pdf).
+Contains documentation files linked to above, including details on article sampling and production, and additionally, results of two [pilot tests for rating](/doc/pilot_results.pdf) article/protest features, and [a priori power analyses](/doc/power_analysis_results.pdf).
