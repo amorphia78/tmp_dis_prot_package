@@ -14,7 +14,7 @@ For a material availability statement and full description of how the articles w
 
 ### [/word_count/](/word_count/)
 
-Running [/word_count/src/code_and_count_article_words.py](/word_count/src/code_and_count_article_words.py) will process the specific articles recreate the word count output files in [/word_count/](/word_count/), also using additional files, as documented in [article_word_count_details](/doc/article_word_count_details.md).
+Running [/word_count/src/code_and_count_article_words.py](/word_count/src/code_and_count_article_words.py) will process the specific articles recreate the word count output files in [/word_count/](/word_count/), also using additional files, as described in [this document](/doc/article_word_count_details.md).
 
 ### [/llm_caches/](/llm_caches/)
 
@@ -22,7 +22,7 @@ Contains caches LLM prompt responses so that [code_and_count_article_words.py](/
 
 ### [/experiment/](/experiment/)
 
-Contains .R files and data to produce the analyses in the main text (`experiment_analyses.R`) and the appendices (`appendix_analyses.R`), respectively. Data from the experiment (all wave 1 respondents) are in the file `disruption_stimulus_data_clean.RData` (and also in `disruption_stimulus_data_clean.csv` for easier visual inspection/import into other statistical software. The file `all_ratings_clean.csv` contains the ratings of the articles produced by research assistants, crowd coders and an LLM.
+Contains .R files and data to produce the analyses in the main text (`experiment_analyses.R`) and the appendices (`appendix_analyses.R`), respectively. Data from the experiment (all wave 1 respondents) are in the file `disruption_stimulus_data_clean.RData` (and also in `disruption_stimulus_data_clean.csv` for easier visual inspection/import into other statistical software). The file `all_ratings_clean.csv` contains the ratings of the articles produced by research assistants, crowd coders and an LLM.
 
 The R scripts `load_and_join_data.R` and `functions.R` are called by the analysis scripts above and contain helper code respectively for cleaning the data (including joining experiment and rating data) and for analyzing and plotting results. `raking/twoway_frequencies_IAS.Rdata` contains the two-way joint distributions of ideology, age and sex in the UK population that are necessary to rake their full joint distribution, which is necessary for representativeness weighting.
 
@@ -30,4 +30,4 @@ The Figures and Tables folders contain the graphs and LaTeX tables produced by t
 
 ### [/doc/](/doc/)
 
-Contains documentation files linked to above, including details on article sampling and production, results of two pilot tests for rating characteristics, and a priori power analyses.
+Contains documentation files linked to above, including details on article sampling and production, and additionally, results of two [pilot tests for rating](/doc/pilot_results.pdf)) characteristics, and [a priori power analyses](/doc/power_analysis_results.pdf).
