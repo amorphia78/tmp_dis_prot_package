@@ -14,7 +14,7 @@ THIS REPO IS NOT USEFUL TO ANYONE EXCEPT ME FOR TESTING PURPOSES. THERE WILL BE 
 
 ### [/articles/](/articles/)
 
-Contains all 110 articles, in [specific](/articles/specific) (100) and [general](/articles/general) (10) subdirectories, in HTML format, produced as described in [full_article_sampling_and_production_details](/doc/full_article_sampling_and_production_details.md).
+Contains all 110 articles, in [specific](/articles/specific) (100) and [general](/articles/general) (10) subdirectories, in HTML format, produced as described in [full_article_sampling_and_production_details](/doc/full_article_sampling_and_production_details.md). To view the articles easily in your browser, rather than seeing the HTML source, use [this link](https://raw.githack.com/amorphia78/tmp_dis_prot_package/main/articles/article_index.html).
 
 ### [/src/word_count/](/src/word_count/) and [/word_count/](/word_count/)
 
