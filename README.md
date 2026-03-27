@@ -2,7 +2,7 @@
 
 ## Temporary staging point repo
 
-The plan is to assemble everything here, then we make a new repo (probably called dis_prot_package) and just copy this one into it so that it is the same, but we lose the commit history, which is unnecessary for this purpose.
+THIS REPO IS NOT USEFUL TO ANYONE EXCEPT ME FOR TESTING PURPOSES. THERE WILL BE A NEW PUBLIC REPO FOR THE SAME PURPOSE.
 
 ## TODO
 
