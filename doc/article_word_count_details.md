@@ -4,7 +4,7 @@
 
 See Main Text Methods section and Supplementary Material section D for a description of the role of word count variables.
 
-Note that as well as the three word counts described in those materials (words on protester messaging, disruption, and negative comments about the protest), this code also counts words on positive comments about the protest. This variable was dropped during piloting (REF TO PREREG?) but retained in prompts for stability between piloting and final processing.
+Note that as well as the three word counts described in those materials (words on protester messaging, disruption, and negative comments about the protest), this code also counts words on positive comments about the protest. This variable was [dropped during piloting](/doc/pilot_results.pdf) but retained in prompts for stability between piloting and final processing.
 
 ## Shared code
 
