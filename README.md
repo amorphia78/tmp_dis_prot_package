@@ -10,7 +10,7 @@ THIS REPO IS NOT USEFUL TO ANYONE EXCEPT ME FOR TESTING PURPOSES. THERE WILL BE 
 
 Contains all 110 articles (100 specific and 10 general) in HTML format. To view the articles easily in your browser, rather than seeing the HTML source, use [this link](https://raw.githack.com/amorphia78/tmp_dis_prot_package/main/articles/article_index.html).
 
-For a material availability statement and full description of how the articles were screened, sampled, summarised, and checked, see [this document](/doc/article_processing.pdf).
+For a material availability statement and full description of how the articles were screened, sampled, summarised, and checked, see [this document](/doc/article_processing.pdf) (LLM prompts are in [this document](/doc/article_processing_llm_prompts.pdf)).
 
 ### [/word_count/](/word_count/)
 
