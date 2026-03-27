@@ -4,21 +4,17 @@
 
 THIS REPO IS NOT USEFUL TO ANYONE EXCEPT ME FOR TESTING PURPOSES. THERE WILL BE A NEW PUBLIC REPO FOR THE SAME PURPOSE.
 
-## TODO
-
-* BEN: Transfer the article production document from Google Doc into [full_article_sampling_and_production_details](/doc/full_article_sampling_and_production_details.md).
-* BEN: Think about how to include "the other (trivial) analysis code that does things like Fishers exact test for for article prep document" (as per other TODO).
-* BOTH: Think about what else needs to be here.
-
 ## Contents
 
 ### [/articles/](/articles/)
 
-Contains all 110 articles, in [specific](/articles/specific) (100) and [general](/articles/general) (10) subdirectories, in HTML format, produced as described in [full_article_sampling_and_production_details](/doc/full_article_sampling_and_production_details.md). To view the articles easily in your browser, rather than seeing the HTML source, use [this link](https://raw.githack.com/amorphia78/tmp_dis_prot_package/main/articles/article_index.html).
+Contains all 110 articles (100 specific and 10 general) in HTML format. To view the articles easily in your browser, rather than seeing the HTML source, use [this link](https://raw.githack.com/amorphia78/tmp_dis_prot_package/main/articles/article_index.html).
 
-### [/src/word_count/](/src/word_count/) and [/word_count/](/word_count/)
+For a material availability statement and full description of how the articles were screened, sampled, summarised, and checked, see this document.
 
-Running [/src/word_count/code_and_count_article_words.py](/src/word_count/code_and_count_article_words.py) will process the specific articles recreate the word count output files in [/word_count/](/word_count/), also using additional files, as documented in [article_word_count_details](/doc/article_word_count_details.md).
+### [/word_count/](/word_count/)
+
+Running [/word_count/src/code_and_count_article_words.py](/word_count/src/code_and_count_article_words.py) will process the specific articles recreate the word count output files in [/word_count/](/word_count/), also using additional files, as documented in [article_word_count_details](/doc/article_word_count_details.md).
 
 ### [/llm_caches/](/llm_caches/)
 

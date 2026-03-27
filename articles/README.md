@@ -1,5 +1,6 @@
 # Articles
 
-github will not normally serve you an HTML file in a browseable form - it will show you HTML source. Use the link below to browse the articles via [githack.com](githack.com), making them easily browseable.
+github does not natively render HTML - it shows HTML source. Use this [article index link](https://raw.githack.com/amorphia78/tmp_dis_prot_package/main/articles/article_index.html) below to browse the articles via [githack.com](githack.com), making them easily legible.
 
-[View the article index](https://raw.githack.com/amorphia78/tmp_dis_prot_package/main/articles/article_index.html).
+Apart from the articles themselves, this folder also contains the [list of corrections](summarisation_corrections.tsv) which were made to summarised articles after their first summarisation by LLM - see the [relevant document](/doc/article_processing.pdf) for full explanation.
+
