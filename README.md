@@ -14,7 +14,7 @@ For a material availability statement and full description of how the articles w
 
 ### [/word_count/](/word_count/)
 
-Running [/word_count/src/code_and_count_article_words.py](/word_count/src/code_and_count_article_words.py) will process the specific articles recreate the word count output files in [/word_count/](/word_count/), also using additional files, as described in [this document](/doc/article_word_count_details.md).
+Running [/word_count/src/code_and_count_article_words.py](/word_count/src/code_and_count_article_words.py) will process the specific articles to recreate the word count output files in [/word_count/](/word_count/), also using additional files, as described in [this document](/doc/article_word_count_details.md).
 
 ### [/llm_caches/](/llm_caches/)
 
