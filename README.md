@@ -18,7 +18,7 @@ Running [/word_count/src/code_and_count_article_words.py](/word_count/src/code_a
 
 ### [/llm_caches/](/llm_caches/)
 
-Contains cached LLM prompt responses so that [code_and_count_article_words.py](/word_count/src/code_and_count_article_words.py) can be run by those without an Anthropic API key, using the [process_with_cache()](/src/word_count/llmproc_core.py#L60) function.
+Contains cached LLM prompt responses so that [code_and_count_article_words.py](/word_count/src/code_and_count_article_words.py) can be run by those without an Anthropic API key, using the [process_with_cache()](/word_count/src/llmproc_core.py#L60) function.
 
 ### [/experiment/](/experiment/)
 
