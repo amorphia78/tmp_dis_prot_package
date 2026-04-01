@@ -1,5 +1,3 @@
-setwd_disruption_analysis() # This function needs to be defined in your .RProfile file to setwd() to the disruption_analysis repo root
-setwd("./experiment")
 library(patchwork)
 source("functions.R")
 source("load_and_join_data.R")
