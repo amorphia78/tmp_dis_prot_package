@@ -1,4 +1,5 @@
-
+setwd_disruption_analysis() # This function needs to be defined in your .RProfile file to setwd() to the disruption_analysis repo root
+setwd("./experiment")
 library(patchwork)
 source("functions.R")
 source("load_and_join_data.R")
@@ -84,8 +85,8 @@ est_CI_chars_unstd <- results_to_df(est_CI_chars_raw_unstd)
 est_CI_chars_unstd <- dplyr::select(est_CI_chars_unstd, -block)
 est_CI_chars_unstd <- est_CI_chars_unstd %>% relocate(characteristic)
 make_results_table(est_CI_chars_unstd, firstcol_values=char_labels,
-                   firstcol_name="Characteristic", file_name="tables/char_effects_unstand.tex",
-                   caption="Effect of characteristics (unstandardized) on environmental attitudes.",
+                   firstcol_name="Feature", file_name="tables/char_effects_unstand.tex",
+                   caption="Effect of features (unstandardized) on environmental attitudes.",
                    label="tab:char_unstand", compact=TRUE)
 
 #fit a model per block, standardized characteristics
@@ -94,8 +95,8 @@ est_CI_chars_std <- results_to_df(est_CI_chars_raw_std)
 est_CI_chars_std <- dplyr::select(est_CI_chars_std, -block)
 est_CI_chars_std <- est_CI_chars_std %>% relocate(characteristic)
 make_results_table(est_CI_chars_std, firstcol_values=char_labels,
-                   firstcol_name="Characteristic", file_name="tables/char_effects_stand.tex",
-                   caption="Effect of characteristics (standardized) on environmental attitudes.",
+                   firstcol_name="Feature", file_name="tables/char_effects_stand.tex",
+                   caption="Effect of features (standardized) on environmental attitudes.",
                    label="tab:char_stand", compact=TRUE)
 
 #leaving out blockade (look at number of protesters)

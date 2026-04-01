@@ -318,8 +318,8 @@ plot_pooled_results <- function(est_CI, outcome_levels, file_suffix=""){
   #set level order
   est_CI$outcome <- factor(est_CI$outcome, levels=outcome_levels)
   
-  #replace level name for Environmentalist identity
-  levels(est_CI$outcome)[5] <- "Envir. identity"
+  #replace level names for Behavior and Environmentalist identity
+  levels(est_CI$outcome)[c(4,5)] <- c("Intentions", "Envir. identity")
   
   #make plot and print to file in figures folder
   pdf(paste0("figures/main_effects_by_outcome", file_suffix, ".pdf"), 10, 5)
@@ -351,6 +351,8 @@ get_CATE_plot <- function(fit, newdata, moderator, outcome){
   #replace level name for Environmentalist identity
   if(outcome == "Envir_identif"){
     outcome_name <- "Envir. identity"
+  } else if (outcome == "Behavior") {
+    outcome_name <- "Intentions"
   } else {
     outcome_name <- outcome
   }
@@ -433,7 +435,7 @@ plot_char_results <- function(est_CI, char_levels, file_suffix="", char_labels){
           legend.box.margin = margin(t = -10)
     ) + 
     labs(color="Causal block") +
-    scale_color_manual(values=c("#6c8ebf", "#82b366", "#d6b656", "#d79b00"))
+    scale_color_manual(values=c("#6c8ebf", "#82b366", "#d6b656", "#b46504"))
   print(p)
   dev.off()
   

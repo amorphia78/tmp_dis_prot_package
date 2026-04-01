@@ -5,7 +5,7 @@ library(haven)
 
 #list outcomes of interest
 outcomes <- c("Salience", "Concern", "Policy", "Behavior", "Envir_identif")
-outcome_names <- c(outcomes[-5], "Envir. identity") #for plots and tables
+outcome_names <- c(outcomes[-c(4,5)], "Intentions", "Envir. identity") #for plots and tables
 
 #list characteristics and their corresponding blocks
 characteristics <- c("numberOfProtesters", "numberOfProtesters_imputed",
