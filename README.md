@@ -1,4 +1,4 @@
-# tmp_dis_prot_package 
+<img width="309" height="145" alt="image" src="https://github.com/user-attachments/assets/85ee6493-a06c-4efb-b785-ac51c571a22a" /># tmp_dis_prot_package 
 
 ## Temporary staging point repo
 
@@ -22,7 +22,7 @@ Contains cached LLM prompt responses so that [code_and_count_article_words.py](/
 
 ### [/experiment/](/experiment/)
 
-Contains .R files and data to produce the analyses in the main text (`experiment_analyses.R`) and the appendices (`appendix_analyses.R`), respectively. These files should be run with the directory they are in (i.e. [/experiment/](/experiment/)) as the working directory.
+Contains .R files and data to produce the analyses in the main text (`experiment_analyses.R`) and the appendices (`appendix_analyses.R`), respectively. These files should be run with the directory they are in (i.e. [/experiment/](/experiment/)) as the working directory. A separate script (`plot_all_ratings.R`) produces Figure 1 in the manuscript, shoing historgrams of the protest/article feature distributions, as well as a feature intercorrelation plot for the Appendices.
 
 Data from the experiment (all wave 1 respondents) are in the file `disruption_stimulus_data_clean.RData` (and also in `disruption_stimulus_data_clean.csv` for easier visual inspection/import into other statistical software). The file `all_ratings_clean.csv` contains the ratings of the articles produced by research assistants, crowd coders and an LLM.
 
